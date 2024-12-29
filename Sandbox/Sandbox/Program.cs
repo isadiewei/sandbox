@@ -1,15 +1,14 @@
 using Sandbox.Database;
 using Sandbox.Repository;
 using Service;
+using Sandbox.Scaffolding;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
+builder.Services.RegisterServices("Service");
+builder.Services.RegisterServices("Repository");
 builder.Services.AddSingleton<DatabaseConnection>();
-builder.Services.AddScoped<ITaskRepository, TaskRepository>();
-builder.Services.AddScoped<IUserTaskService, UserTaskService>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Model;
 using Sandbox.Database;
 
 namespace Sandbox.Repository
