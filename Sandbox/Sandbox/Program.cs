@@ -1,7 +1,6 @@
 using Sandbox.Database;
-using Sandbox.Repository;
-using Service;
 using Sandbox.Scaffolding;
+using NLog.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +8,9 @@ builder.Services.AddControllers();
 builder.Services.RegisterServices("Service");
 builder.Services.RegisterServices("Repository");
 builder.Services.AddSingleton<DatabaseConnection>();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddNLog();
 
 var app = builder.Build();
 
