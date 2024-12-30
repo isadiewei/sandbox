@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Service;
 using Model;
+using Service.UserTask;
 
 namespace Sandbox.Controllers
 {
@@ -8,11 +8,16 @@ namespace Sandbox.Controllers
     [Route("[controller]")]
     public class TaskController : ControllerBase
     {
+        private readonly ILogger<TaskController> _logger;
         private readonly IUserTaskService _userTaskService;
 
-        public TaskController(IUserTaskService userTaskService)
+        public TaskController(
+            ILogger<TaskController> logger, 
+            IUserTaskService userTaskService
+            )
         {
             _userTaskService = userTaskService;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -26,6 +31,24 @@ namespace Sandbox.Controllers
             }
             catch (Exception e)
             {
+                _logger.LogError(e, "Failed to get tasks");
+                return StatusCode(500, e.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateTask([FromBody] Todo todo)
+        {
+            try
+            {
+                bool? result = await _userTaskService.CreateTodo(todo);
+                bool response = result.HasValue && result.Value;
+
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "failed to create a task");
                 return StatusCode(500, e.Message);
             }
         }
