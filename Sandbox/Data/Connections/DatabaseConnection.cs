@@ -12,10 +12,12 @@ namespace Sandbox.Database
         public DatabaseConnection()
         {
             // TODO 20241228 load environment from configuration settings
-            _connectionSettings = LoadSqlConnectionSettings(Environment.Local);
+            _connectionSettings = LoadSqlConnectionSettings();
         }
 
-        public SqlConnectionSettings LoadSqlConnectionSettings(Environment environment)
+        public SqlConnectionSettings Settings { get { return _connectionSettings; } }
+
+        public SqlConnectionSettings LoadSqlConnectionSettings(Environment environment = Environment.Local)
         {
             string filename = $"database.{environment.ToString().ToLower()}.json";
 
