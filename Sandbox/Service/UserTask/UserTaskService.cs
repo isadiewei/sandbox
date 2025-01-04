@@ -1,7 +1,8 @@
-﻿using Sandbox.Repository;
+﻿using Microsoft.Extensions.Logging;
 using Model;
 using Model.Exceptions;
-using Microsoft.Extensions.Logging;
+using Repository.Repository.Task;
+using Repository.Repository.UserTask;
 
 namespace Service.UserTask
 {
@@ -9,28 +10,26 @@ namespace Service.UserTask
     {
         private readonly ILogger<UserTaskService> _logger;
         private readonly ITaskRepository _taskRepo;
+        private readonly IUserTaskRepository _userTaskRepository;
 
         public UserTaskService(
             ILogger<UserTaskService> logger,
-            ITaskRepository taskRepo
+            ITaskRepository taskRepo,
+            IUserTaskRepository userTaskRepository
             )
         {
             _logger = logger;
             _taskRepo = taskRepo;
+            _userTaskRepository = userTaskRepository;
         }
 
         public async Task<IEnumerable<Todo>> GetAll()
         {
             try
             {
-                IEnumerable<TaskEntity> tasks = await _taskRepo.GetAll();
+                IEnumerable<Todo> tasks = await _taskRepo.GetAll();
 
-                return tasks.Select(t => new Todo
-                {
-                    TaskId = t.TaskId,
-                    Name = t.Name,
-                    Description = t.Description,
-                });
+                return tasks;
             }
             catch (Exception e)
             {
@@ -42,7 +41,7 @@ namespace Service.UserTask
         {
             try
             {
-                int? result = await _taskRepo.CreateTodo(todo);
+                int? result = await _taskRepo.InsertTodo(todo);
 
                 return result.HasValue && result.Value > 0;
             }
@@ -50,6 +49,33 @@ namespace Service.UserTask
             {
                 _logger.LogError(e, "failed to create task");
                 return null;
+            }
+        }
+
+        public async Task<IEnumerable<Todo>> GetUserTasks(int? userId)
+        {
+            try
+            {
+                if (!userId.HasValue)
+                {
+                    _logger.LogWarning($"get user tasks will not be found for id {userId}");
+                }
+
+                IEnumerable<Todo>? todos = await _userTaskRepository.GetAll(
+                    new User { UserId = userId.Value });
+
+                if (todos == null)
+                {
+                    _logger.LogWarning($"user tasks returned null tasks for user {userId}");
+                    return [];
+                }
+
+                return todos;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, message: $"failed to get user tasks for user {userId}");
+                return [];
             }
         }
     }

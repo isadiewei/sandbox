@@ -12,13 +12,6 @@ namespace Sandbox.Scaffolding
         {
             builder.ClearProviders();
             builder.AddNLog();
-            
-            //DatabaseTarget target = (DatabaseTarget)LogManager.Configuration.FindTargetByName("database") 
-            //    ?? throw new ArgumentNullException("NLog target was not found in the configuration file");
-
-            //target.ConnectionString = new DatabaseConnection().Settings.ConnectionString;
-
-            //LogManager.ReconfigExistingLoggers();
         }
     }
 }

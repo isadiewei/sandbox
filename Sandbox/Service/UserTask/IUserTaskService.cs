@@ -6,5 +6,6 @@ namespace Service.UserTask
     {
         Task<IEnumerable<Todo>> GetAll();
         Task<bool?> CreateTodo(Todo task);
+        Task<IEnumerable<Todo>> GetUserTasks(int? userId);
     }
 }

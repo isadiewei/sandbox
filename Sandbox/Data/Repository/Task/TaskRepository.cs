@@ -2,7 +2,7 @@
 using Model;
 using Sandbox.Database;
 
-namespace Sandbox.Repository
+namespace Repository.Repository.Task
 {
     public class TaskRepository : ITaskRepository
     {
@@ -13,18 +13,18 @@ namespace Sandbox.Repository
             _databaseConnection = databaseConnection;
         }
 
-        public async Task<IEnumerable<TaskEntity>> GetAll()
+        public async Task<IEnumerable<Todo>> GetAll()
         {
             string query = "SELECT TaskId, [Name], [Description] FROM sandbox.todo.Task";
 
             using (var connection = _databaseConnection.CreateConnection())
             {
-                var companies = await connection.QueryAsync<TaskEntity>(query);
+                var companies = await connection.QueryAsync<Todo>(query);
                 return companies.ToList();
             }
         }
 
-        public async Task<int?> CreateTodo(Todo todo)
+        public async Task<int?> InsertTodo(Todo todo)
         {
             string query = "INSERT INTO sandbox.todo.Task (Name, Description) VALUES (@Name, @Description)";
 
