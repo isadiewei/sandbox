@@ -1,8 +1,8 @@
 ﻿using Model;
 
-namespace Repository.Repository.UserTask
+namespace Repository.Repository.UserTodos
 {
-    public interface IUserTaskRepository
+    public interface IUserTodosRepository
     {
         Task<IEnumerable<Todo>?> GetAll(User user);
     }

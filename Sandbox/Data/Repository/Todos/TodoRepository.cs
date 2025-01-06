@@ -3,15 +3,15 @@ using Microsoft.Extensions.Logging;
 using Model;
 using Sandbox.Database;
 
-namespace Repository.Repository.Task
+namespace Repository.Repository.Todos
 {
-    public class TaskRepository : ITaskRepository
+    public class TodoRepository : ITodoRepository
     {
-        private readonly ILogger<TaskRepository> _logger;
+        private readonly ILogger<TodoRepository> _logger;
         private readonly DatabaseConnection _databaseConnection;
 
-        public TaskRepository(
-            ILogger<TaskRepository> logger,
+        public TodoRepository(
+            ILogger<TodoRepository> logger,
             DatabaseConnection databaseConnection
             )
         {
@@ -43,7 +43,7 @@ namespace Repository.Repository.Task
             }
         }
 
-        public async Task<IEnumerable<Todo>> GetAll()
+        public async Task<IEnumerable<Todo>> ReadTodo()
         {
             string query = "SELECT TaskId, [Name], [Description] FROM sandbox.todo.Task";
 

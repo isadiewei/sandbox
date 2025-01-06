@@ -3,15 +3,15 @@ using Microsoft.Extensions.Logging;
 using Model;
 using Sandbox.Database;
 
-namespace Repository.Repository.UserTask
+namespace Repository.Repository.UserTodos
 {
-    public class UserTaskRepository : IUserTaskRepository
+    public class UserTodosRepository : IUserTodosRepository
     {
-        private readonly ILogger<UserTaskRepository> _logger;
+        private readonly ILogger<UserTodosRepository> _logger;
         private readonly DatabaseConnection _connection;
         
-        public UserTaskRepository(
-            ILogger<UserTaskRepository> logger,
+        public UserTodosRepository(
+            ILogger<UserTodosRepository> logger,
             DatabaseConnection databaseConnection
             )
         {

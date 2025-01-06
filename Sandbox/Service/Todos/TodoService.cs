@@ -1,21 +1,18 @@
 ﻿using Microsoft.Extensions.Logging;
-using Repository.Repository.Task;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Model;
+using Model.Exceptions;
+using Repository.Repository.Todos;
 
 namespace Service.Todos
 {
     public class TodoService : ITodoService
     {
         private readonly ILogger<TodoService> _logger;
-        private readonly ITaskRepository _todoRepository;
+        private readonly ITodoRepository _todoRepository;
 
         public TodoService(
             ILogger<TodoService> logger,
-            ITaskRepository taskRepository
+            ITodoRepository taskRepository
             )
         {
             _logger = logger;
@@ -40,6 +37,35 @@ namespace Service.Todos
             catch (Exception e)
             {
                 _logger.LogError(e, $"failed to delete todo {id}");
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<Todo>> ReadTodos()
+        {
+            try
+            {
+                IEnumerable<Todo> tasks = await _todoRepository.ReadTodo();
+
+                return tasks;
+            }
+            catch (Exception e)
+            {
+                throw new SelectException("Error Mapping Task to Todo", e);
+            }
+        }
+
+        public async Task<bool?> CreateTodo(Todo todo)
+        {
+            try
+            {
+                int? result = await _todoRepository.InsertTodo(todo);
+
+                return result.HasValue && result.Value > 0;
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "failed to create task");
                 return null;
             }
         }

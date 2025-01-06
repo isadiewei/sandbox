@@ -26,9 +26,9 @@ export default function New({ updated }) {
                 'Content-Type': 'application/json'
             },
             body
+        }).then(() => {
+            updated();
         });
-
-        updated();
     }
 
     return (

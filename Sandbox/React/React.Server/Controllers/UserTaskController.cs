@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Model;
-using Service.UserTask;
+using Service.UserTodos;
 
 namespace React.Server.Controllers
 {
@@ -9,11 +9,11 @@ namespace React.Server.Controllers
     public class UserTaskController : ControllerBase
     {
         private readonly ILogger<UserTaskController> _logger;
-        private readonly IUserTaskService _userTaskService;
+        private readonly IUserTodoService _userTaskService;
 
         public UserTaskController(
             ILogger<UserTaskController> logger,
-            IUserTaskService userTaskService
+            IUserTodoService userTaskService
             )
         {
             _logger = logger;
