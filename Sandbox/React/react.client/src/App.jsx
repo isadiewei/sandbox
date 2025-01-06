@@ -32,7 +32,7 @@ function App() {
         <div>
             <h1 id="tableLabel">Todos</h1>
             <p>A list of tasks to complete.</p>
-            <New />
+            <New updated={populate} />
             <hr />
             {contents}
         </div>
