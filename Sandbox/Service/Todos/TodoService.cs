@@ -23,7 +23,7 @@ namespace Service.Todos
         {
             try
             {
-                int? result = await _todoRepository.DeleteTodo(new Model.Todo { TaskId = id });
+                int? result = await _todoRepository.DeleteTodo(new Model.Todo { TodoId = id });
 
                 if (result == null)
                 {

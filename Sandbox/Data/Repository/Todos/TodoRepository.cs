@@ -25,10 +25,10 @@ namespace Repository.Repository.Todos
             {
                 string query = @"
                     DELETE FROM todo.UserTask
-                    	WHERE TaskId = @taskId
+                    	WHERE TaskId = @todoId
                     
                     DELETE FROM todo.Task
-                    	WHERE TaskId = @taskId
+                    	WHERE TaskId = @todoId
                     ";
 
                 using (var connection = _databaseConnection.CreateConnection())
@@ -38,14 +38,14 @@ namespace Repository.Repository.Todos
             }
             catch (Exception e)
             {
-                _logger.LogError(e, $"failed to delete todo {todo.TaskId}");
+                _logger.LogError(e, $"failed to delete todo {todo.TodoId}");
                 return null;
             }
         }
 
         public async Task<IEnumerable<Todo>> ReadTodo()
         {
-            string query = "SELECT TaskId, [Name], [Description] FROM sandbox.todo.Task";
+            string query = "SELECT TaskId as TodoId, [Name], [Description] FROM sandbox.todo.Task";
 
             using (var connection = _databaseConnection.CreateConnection())
             {

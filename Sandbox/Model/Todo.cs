@@ -4,7 +4,7 @@ namespace Model
 {
     public class Todo
     {
-        public int TaskId { get; set; }
+        public int TodoId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
     }

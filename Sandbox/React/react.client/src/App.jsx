@@ -25,7 +25,7 @@ function App() {
                     <tr key={todo.taskId}>
                         <td>{todo.name}</td>
                         <td>{todo.description}</td>
-                        <td><Delete updated={populate} todoId={todo.taskId} /></td>
+                        <td><Delete updated={populate} todoId={todo.todoId} /></td>
                     </tr>
                 )}
             </tbody>
