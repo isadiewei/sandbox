@@ -1,23 +1,23 @@
-using Sandbox.Database;
-using Sandbox.Scaffolding;
+//using Sandbox.Database;
+//using Sandbox.Scaffolding;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.RegisterServices("Service");
-builder.Services.RegisterServices("Repository");
+//builder.Services.AddControllers();
+//builder.Services.RegisterServices("Service");
+//builder.Services.RegisterServices("Repository");
 
-builder.Services.AddSingleton<DatabaseConnection>();
-builder.Logging.ConfigureLogging();
+//builder.Services.AddSingleton<DatabaseConnection>();
+//builder.Logging.ConfigureLogging();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//// Configure the HTTP request pipeline.
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
 
 app.Run();

@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{80C09513-3407-4AF4-841C-82096395955E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "React.Server", "React\React.Server\React.Server.csproj", "{1BF1F40B-8F63-47FD-91C1-76509543875E}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "react.client", "React\react.client\react.client.esproj", "{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,16 @@ Global
 		{80C09513-3407-4AF4-841C-82096395955E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80C09513-3407-4AF4-841C-82096395955E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80C09513-3407-4AF4-841C-82096395955E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BF1F40B-8F63-47FD-91C1-76509543875E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BF1F40B-8F63-47FD-91C1-76509543875E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BF1F40B-8F63-47FD-91C1-76509543875E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BF1F40B-8F63-47FD-91C1-76509543875E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1182A73-DBD9-45A3-B8F4-F6427562A1C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

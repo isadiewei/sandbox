@@ -6,5 +6,6 @@ namespace Repository.Repository.Task
     {
         Task<IEnumerable<Todo>> GetAll();
         Task<int?> InsertTodo(Todo todo);
+        Task<int?> DeleteTodo(Todo todo);
     }
 }

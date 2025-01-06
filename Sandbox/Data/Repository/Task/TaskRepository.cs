@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Logging;
 using Model;
 using Sandbox.Database;
 
@@ -6,11 +7,40 @@ namespace Repository.Repository.Task
 {
     public class TaskRepository : ITaskRepository
     {
+        private readonly ILogger<TaskRepository> _logger;
         private readonly DatabaseConnection _databaseConnection;
 
-        public TaskRepository(DatabaseConnection databaseConnection)
+        public TaskRepository(
+            ILogger<TaskRepository> logger,
+            DatabaseConnection databaseConnection
+            )
         {
+            _logger = logger;
             _databaseConnection = databaseConnection;
+        }
+
+        public async Task<int?> DeleteTodo(Todo todo)
+        {
+            try
+            {
+                string query = @"
+                    DELETE FROM todo.UserTask
+                    	WHERE TaskId = @taskId
+                    
+                    DELETE FROM todo.Task
+                    	WHERE TaskId = @taskId
+                    ";
+
+                using (var connection = _databaseConnection.CreateConnection())
+                {
+                    return await connection.ExecuteAsync(query, todo);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"failed to delete todo {todo.TaskId}");
+                return null;
+            }
         }
 
         public async Task<IEnumerable<Todo>> GetAll()
