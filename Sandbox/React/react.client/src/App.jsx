@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import New from './todos/New';
 import Delete from './todos/Delete';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import DataTable from './todos/DataTable';
 
 function App() {
     const [todos, setTodos] = useState();
@@ -25,7 +28,12 @@ function App() {
                     <tr key={todo.taskId}>
                         <td>{todo.name}</td>
                         <td>{todo.description}</td>
-                        <td><Delete updated={populate} todoId={todo.todoId} /></td>
+                        <td>
+                            <ButtonGroup aria-label="Basic button group">
+                                <Button>One</Button>
+                                <Delete updated={populate} todoId={todo.todoId} />
+                            </ButtonGroup>
+                        </td>
                     </tr>
                 )}
             </tbody>
@@ -35,27 +43,21 @@ function App() {
         <div>
             <h1 id="tableLabel">Todos</h1>
             <p>A list of tasks to complete.</p>
-            <New updated={populate} />
+            <div className="new-row">
+                <New updated={populate} />
+            </div>
+            <DataTable rows={todos} update={populate} />
             <hr />
-            {contents}
+            {/*{contents}*/}
         </div>
     );
-    
+
     async function populate() {
         const response = await fetch('task');
         if (response.ok) {
             const data = await response.json();
             setTodos(data);
         }
-    }
-
-    function removeTodo(taskId) {
-    //    data = todos;
-    //    const index = array.indexOf(x => x.);
-    //    if (index > -1) { // only splice array when item is found
-    //        array.splice(index, 1); // 2nd parameter means remove one item only
-    //    }
-        console.log('todo is supposed to be removed');
     }
 }
 

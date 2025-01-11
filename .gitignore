@@ -3,3 +3,5 @@ obj/
 bin/
 Environments/
 internal-nlog.txt
+node_modules/
+package-lock.json

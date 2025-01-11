@@ -1,4 +1,7 @@
-export default function Delete({ todoId, updated }) {
+import Button from '@mui/material/Button';
+import { DeleteOutlined } from '@mui/icons-material';
+
+export default function Delete({ event, updated }) {
     function handleDeleteClick(id) {
         return function () {
             fetch(`task/delete/${id}`, {
@@ -10,6 +13,6 @@ export default function Delete({ todoId, updated }) {
     }
 
     return (
-        <button type="btn" onClick={handleDeleteClick(todoId)}>X</button>
+        <Button type="btn" onClick={handleDeleteClick(todoId)}><DeleteOutlined /></Button>
     )
 }

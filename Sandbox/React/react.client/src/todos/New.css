@@ -1,0 +1,9 @@
+.styled-input {
+    padding: 0 10px 15px 10px;
+    margin-left: 15px;
+}
+
+.styled-button {
+    margin-top: 10px !important;
+    padding: 15px 0 15px 0;
+}
