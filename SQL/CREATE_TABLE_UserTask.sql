@@ -1,0 +1,17 @@
+IF (EXISTS(SELECT *
+	FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_SCHEMA = 'todo'
+		AND TABLE_NAME = 'UserTask'))
+BEGIN
+	DROP TABLE todo.UserTask
+END
+GO
+
+CREATE TABLE todo.UserTask (
+	UserId INT,
+	TaskId INT,
+	CONSTRAINT FK_User_UserId FOREIGN KEY (UserId)
+		REFERENCES todo.[User](UserId),
+	CONSTRAINT FK_Task_TaskId FOREIGN KEY (TaskId)
+		REFERENCES todo.Task(TaskId)
+)
